@@ -161,7 +161,6 @@ if(isset($_POST['submit']))
         
       </div>
     </div>
-
       <div class="sales-boxes">
        <div class="recent-sales box">
         <?php
@@ -190,7 +189,7 @@ if(isset($_POST['submit']))
                     $data = mysqli_query($con,$query);
                     while($res = mysqli_fetch_assoc($data)){
                       $g = $res['team_gen'];
-                      $query1 = "select * from `player_details` where gen_id='$g'";
+                      $query1 = "select * from `player_details` where gen_id='$g' and `status`=1";
                       $data1 = mysqli_query($con,$query1);
                       while($res1 = mysqli_fetch_assoc($data1)){
                         $r = $res1['reg_id'];

@@ -2,17 +2,18 @@
 include('config.php');
 session_start();
 $email = $_SESSION['email'];
-echo $email;
+
 
 $sql = "SELECT * FROM `register` WHERE `reg_email` = '$email'";
 $row = mysqli_query($con,$sql);
 if($res = mysqli_fetch_assoc($row)){
   $reg_id = $res['reg_id'];
+  $_SESSION['reg_id']=$reg_id;
   $regstatus = $res['reg_status'];
   //echo $reg_id;
 
   if($regstatus == 1){
-    header('location:view_team_reg.php');
+    header('location:view_team_reg2.php');
   }
 }
 ?>
@@ -21,7 +22,6 @@ if($res = mysqli_fetch_assoc($row)){
 <head>
   <meta charset="utf-8">
   <title>Login Form</title>
-
   <link rel="stylesheet" href="style.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -116,12 +116,29 @@ if($res = mysqli_fetch_assoc($row)){
 
   <nav class="navbar-login">
     <div class="max-width">
-      <div class="logo"><a href="#">Elite<span>'s.</span></a></div>
-      <ul class="menu">
+      <ul class="menu" style="padding: 20px;">
         <li><a href="team_registration.php?am=<?php echo $reg_id;?>">
 Register for a Team</a></li>
-        <li><a href="#teams" class="menu-btn">Teams</a></li>
+<?php 
+$sql1 = "SELECT * FROM `register` WHERE `reg_email` = '$email'";
+$row1 = mysqli_query($con,$sql1);
+if($res1 = mysqli_fetch_assoc($row1)){
+  $reg_id = $res1['reg_id'];
+ 
+ $sql2 = "SELECT * FROM `player_details` WHERE `reg_id` = '$reg_id' and `status`=1";
+$row1 = mysqli_query($con,$sql2);
+if(mysqli_num_rows($row1)>0){?>
+
+        <li><a href="view_p_det.php" class="menu-btn">Player Info</a></li>
+        <li><a href="leaveapplicationform.php" class="menu-btn">Apply Leave</a></li>
+        <li><a href="view_course.php" class="menu-btn">View Programmes</a></li>
+      <?php } 
+      else{?>
+        <li><a href="player_details.php" class="menu-btn">Register as Player</a></li>
+      <?php }}?>
+        <li><a href="book_details.php" class="menu-btn">Booking Details</a></li>
         <li><a href="#about" class="menu-btn">About</a></li>
+        <li><a href="feedback.php" class="menu-btn">Feedback</a></li>
         <li><a href="login.php" class="menu-btn">Logout</a></li>
       </ul>
       <div class="menu-btn">
@@ -129,24 +146,40 @@ Register for a Team</a></li>
       </div>
     </div>
   </nav>
-      <center><p style="font-family:'Poppins',sans-serif; font-weight: bold;font-size: 25px;padding-top: 10%;">TEAMS</p></center>
-  <div class="container1">
+       <section class="service" id="service">
+      <div class="max-width">
+        <h2 class="title">Top Competitions</h2>
+        <div class="serv-content">
 
-<?php 
-$s=mysqli_query($con,"SELECT * FROM `team_reg` where `team_status` = 1");
-while($res=mysqli_fetch_array($s))
-{
-  
-    
-  echo "<div class='box'>";
-    echo "<div class='icon'><img src='".$res['team_img']."' width= 100px height=100px style='border-radius:30px;'></div>";
-      echo "<div class='content'>";
-      echo "<h3>".$res['teamr_name']."</h3>";
-      echo "<p>".$res['team_desc']."</p></div></div>";
+        <?php
+          
+          $sql = "SELECT `trm_id`, `trm_name`, `trm_tot_teams` FROM `trm`";
+          $row = mysqli_query($con,$sql);
+          while($res = mysqli_fetch_assoc($row))
+          {
+            $tid = $res['trm_id'];
+            $tname = $res['trm_name'];
+            $tot_teams = $res['trm_tot_teams'];
 
-}
-?>
-</div>
+
+
+          ?>
+          <div class="card" style="cursor: auto;">
+            <div class="box">
+
+              <div class="text" style="font-family:sans-serif;"><?php echo $tname;?></div>
+              <a href="schedule_cust_view.php?tid=<?php echo $tid;?>"><p>Schedule |</p></a>
+              <a href="#"><p>Teams</p></a>
+            </div>
+          </div>
+        <?php
+      }
+      ?>
+          
+        </div>
+      </div>
+    </section>
+
 
  
     <!--about section start-->

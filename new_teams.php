@@ -12,7 +12,7 @@ $tid = $_POST['td_1'];
         echo '<script>alert("Status Updated!")</script>';
         if (mysqli_query($con,$query))
               {
-              echo "Success";
+              //echo "Success";
               }
               else
               {
@@ -86,6 +86,12 @@ $query = "UPDATE `team_reg` SET `team_status`= 2 WHERE `teamr_id` = '$tid'";
       color: white;
     }
   </style>
+ <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
 
 </head>
 <body>
@@ -98,7 +104,7 @@ $query = "UPDATE `team_reg` SET `team_status`= 2 WHERE `teamr_id` = '$tid'";
       <li>
         <a href="#" class="active">
           <i class='bx bx-grid-alt' ></i>
-          <span class="links_name">Dashboard</span>
+           <span class="links_name"onclick="location.href='dashboard.php';" style="cursor: pointer;">Dashboard</span>
         </a>
       </li>
       <li>
@@ -133,6 +139,12 @@ $query = "UPDATE `team_reg` SET `team_status`= 2 WHERE `teamr_id` = '$tid'";
       </li>
       <li>
         <a href="#">
+          <i class='bx bx-coin-stack' ></i>
+             <span class="links_name"onclick="location.href='tournament/stadium.php';" style="cursor: pointer;">Stadium</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
           <i class='bx bx-book-alt' ></i>
           <span class="links_name"onclick="location.href='../bpmssample/tournament/trmt.php';" style="cursor: pointer;">Tournament</span>
         </a>
@@ -143,10 +155,10 @@ $query = "UPDATE `team_reg` SET `team_status`= 2 WHERE `teamr_id` = '$tid'";
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
-       <li>
+      <li>
         <a href="#">
-          <i class='bx bx-book-alt'></i>
-          <span class="links_name"onclick="location.href='view_team_a.php';" style="cursor: pointer;">View Team</span>
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
         </a>
       </li>
       <li class="log_out">
@@ -235,14 +247,7 @@ $query = "UPDATE `team_reg` SET `team_status`= 2 WHERE `teamr_id` = '$tid'";
           }
           ?>
 
-
+</table></div></div></div></div>
               </section>
-
-             
-
           </body>
-
-
-
-
-          </html>
+    </html>

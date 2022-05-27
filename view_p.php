@@ -76,7 +76,8 @@
     <div class="max-width">
       <div class="logo"><a href="#">Elite<span>'s.</span></a></div>
       <ul class="menu">
-        <li><a href="index.php" class="menu-btn">Home</a></li>
+        <li><a href="display_team.php" class="menu-btn">Home</a></li>
+        <li><a href="login.php" class="menu-btn">Logout</a></li>
       </ul>
       <div class="menu-btn">
         <i class="fas fa-bars"></i>

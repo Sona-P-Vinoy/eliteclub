@@ -1,9 +1,13 @@
-<?php 
-include 'config.php';
+<?php
+include('config.php');
 session_start();
-if($_SESSION['status']!=true){
-  header("Location:login.php");
+$reg_id = $_SESSION['reg_id'];
+//echo $reg_id;
+if(isset($_SESSION["eliteSession"]) != session_id()){
+    header("Location:index.php");
+    die();
 }
+else{ 
 ?>
   <!DOCTYPE html>
   <html>
@@ -71,12 +75,8 @@ if($_SESSION['status']!=true){
       <div class="max-width">
         <div class="logo"><a href="#">Elite<span>'s</span></a></div>
         <ul class="menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Skills</a></li>
-          <li><a href="#">Teams</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="display_team.php">Home</a></li>
+          <li><a href="login.php">Logout</a></li>
         </ul>
         <div class="menu-btn">
           <i class="fas fa-bars"></i>
@@ -91,7 +91,6 @@ if($_SESSION['status']!=true){
     <section class="teams" id="teams">
       <div class="max-width">
                 <?php
-                  include('config.php');
                   $tid = $_GET['tid'];
 
                  $query = "SELECT `trm_name` FROM `trm` WHERE `trm_id` = '$tid'";
@@ -177,3 +176,5 @@ if($_SESSION['status']!=true){
     <script src="script.js"></script>
   </body>
   </html>
+
+  <?php } ?>

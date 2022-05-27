@@ -2,7 +2,7 @@
 <?php
 include('config.php');
 session_start();
-
+ 
 if(isset($_POST['log']))
 {
   $email=$_POST['email'];
@@ -33,17 +33,20 @@ if(isset($_POST['log']))
       $query1="SELECT * FROM `player_details` WHERE `reg_id`='$reg'";
       $result1= mysqli_query($con,$query1);
       if(mysqli_num_rows($result1)>0){
+        $_SESSION['eliteSession']=session_id();
         $_SESSION['email']=$email;
         $_SESSION['status'] = true;
-        header('location:view_p.php');
+        header('location:display_team.php');
       }else{
+        $_SESSION['eliteSession']=session_id();
         $_SESSION['email']=$email;
         $_SESSION['status'] = true;
-        header('location:player_details.php');
+        header('location:display_team.php');
       }
     }
     elseif(($type == 3))
     {
+      $_SESSION['eliteSession']=session_id();
       $_SESSION['email']=$email;
       $_SESSION['status'] = true;
       header('location:home1sample.php');
@@ -51,6 +54,7 @@ if(isset($_POST['log']))
     elseif(($type == 4))
 
     {
+      $_SESSION['eliteSession']=session_id();
      $_SESSION['email']=$email;
      $_SESSION['status'] = true;
      header('location:display_team.php');
@@ -58,14 +62,12 @@ if(isset($_POST['log']))
     elseif(($type == 5))
 
     {
+    $_SESSION['eliteSession']=session_id();
      $_SESSION['email']=$email;
      $_SESSION['status'] = true;
      header('location:dashboard1.php');
-   }
-   
-   
+   } 
  }
-
 }
 else{
   echo '<script type="text/javascript"> alert("Invalid Username And Password!!")</script>';
@@ -83,6 +85,7 @@ else{
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
   <script src="script.js"></script>
+
   <style>
   body{
     background-color:#616d7b;
@@ -180,6 +183,11 @@ else{
   }
 
 
+</script>
+<script type = "text/javascript" >  
+    function preventBack() { window.history.forward(); }  
+    setTimeout("preventBack()", 0);  
+    window.onunload = function () { null };  
 </script>
 </body>
 </html>

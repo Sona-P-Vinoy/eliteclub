@@ -22,13 +22,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-.container1{
+  .container1{
   padding-left:7%;
   display:flex;
   flex-wrap:wrap;
@@ -36,7 +30,6 @@ session_start();
 }
 .container1 .box{
   position:relative;
-  width:100px;
   padding:40px;
   background:#fff;
   box-shadow:0 5px 15px rgba(0,0,0,.1);
@@ -58,15 +51,15 @@ session_start();
 }
 .container1 .box .icon{
   position:relative;
-  width:80px;
-  height:80px;
+  width:190px;
+  height:100px;
   color:#fff;
   background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
   margin:0 auto;
-  border-radius:50%;
+  border-radius:30%;
   font-size:40px;
   font-weight:700;
   transition:1s;
@@ -169,6 +162,18 @@ session_start();
           <span class="links_name"onclick="location.href='view_team_a.php';" style="cursor: pointer;">View Team</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -185,17 +190,13 @@ session_start();
       </div>
 
       <div class="profile-details">
-        <img src="image/david.jpg" alt="">
+        <img src="../image/david.jpg" alt="">
         <span class="admin_name">Admin</span>
       </div>
     </nav>
 
-    <div class="home-content">
 
-      <div class="sales-boxes">
-       <div class="recent-sales box">
-
-        <div class="container">
+        <div class="container1">
         <?php
           $trm_id = $_SESSION['trm_id'];
 
@@ -216,7 +217,7 @@ session_start();
                   echo "<div class='icon'><img src='../".$res2['team_img']."' width= 100px height=100px style='border-radius:30px;'></div>";
                   echo "<div class='content'>";
                   echo "<h3>".$res2['teamr_name']."</h3>";
-                  echo "<p>".$res2['team_desc']."</p></div></div></a>";
+                  echo "</div></div></a>";
             
           }
         }
@@ -225,9 +226,6 @@ session_start();
 
   
         </div>
-      </div>
-    </div> 
-  </div>
 </section>
 
 

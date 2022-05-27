@@ -98,6 +98,18 @@ include('../config.php');
           <span class="links_name"onclick="location.href='../team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -114,7 +126,7 @@ include('../config.php');
       </div>
 
       <div class="profile-details">
-        <img src="image/david.jpg" alt="">
+        <img src="../image/david.jpg" alt="">
         <span class="admin_name">Admin</span>
       </div>
     </nav>

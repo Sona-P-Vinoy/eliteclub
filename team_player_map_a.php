@@ -147,6 +147,12 @@ if(isset($_POST['submit']))
       </li>
       <li>
         <a href="#">
+          <i class='bx bx-coin-stack' ></i>
+             <span class="links_name"onclick="location.href='tournament/stadium.php';" style="cursor: pointer;">Stadium</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
           <i class='bx bx-book-alt' ></i>
           <span class="links_name"onclick="location.href='../bpmssample/tournament/trmt.php';" style="cursor: pointer;">Tournament</span>
         </a>
@@ -157,16 +163,10 @@ if(isset($_POST['submit']))
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
-       <li>
-        <a href="#">
-          <i class='bx bx-book-alt'></i>
-          <span class="links_name"onclick="location.href='view_team_a.php';" style="cursor: pointer;">View Team</span>
-        </a>
-      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
-          <span class="links_name" onclick="location.href='login.php';" style="cursor: pointer;">Log out</span>
+          <span class="links_name" onclick="location.href='logout.php';" style="cursor: pointer;">Log out</span>
         </a>
       </li>
     </ul>

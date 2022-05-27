@@ -35,7 +35,7 @@
 
   $sql4 = "UPDATE `register` SET `reg_status`=1  WHERE `reg_id` = '$id'";
   if(mysqli_query($con,$sql4)){
-    echo 'edited successfully';
+    echo 'Done';
     
   }
   else
@@ -142,17 +142,6 @@ form .row .col-75 span{
 </style>
 </head>
 <body>
-  <nav class="navbar-login">
-    <div class="max-width">
-      <div class="logo"><a href="#">Elite<span>'s.</span></a></div>
-      <ul class="menu">
-        <li><a href="index.php" class="menu-btn">Home</a></li>
-      </ul>
-      <div class="menu-btn">
-        <i class="fas fa-bars"></i>
-      </div>
-    </div>
-  </nav>
 
   <div class="container">
     <center><h2>New Team Registration form</h2></center><br>

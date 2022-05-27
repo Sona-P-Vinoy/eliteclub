@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -103,6 +104,18 @@
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -117,6 +130,21 @@
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
       </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7">
+
+                                <form action="search.php" method="POST">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="search" required value="<?php if(isset($_POST['search'])){echo $_POST['search']; } ?>" class="form-control" placeholder="Search data">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
       
       <div class="profile-details">
         <img src="image/david.jpg" alt="">
@@ -125,10 +153,12 @@
     </nav>
 
     <div class="home-content">
-
-
-      <div class="sales-boxes">
-       <div class="recent-sales box">
+    <div class="overview-boxes">
+        <div class="box" onclick="location.href='new_players.php';" style="cursor: pointer;">
+          <div class="right-side">
+            <div class="box-topic">View Requested Players</div>
+          </div>
+        </div>
 
         <div class="container">
           <center><h3>Player Details</h3></center>
@@ -137,6 +167,7 @@
           </form>
           <table id ="customers">
             <tr>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
@@ -152,7 +183,7 @@
             $data = mysqli_query($con,$query);
             if($res=mysqli_fetch_assoc($data)){
               $type = $res['reg_id'];
-              $query2 = "select * from `register` INNER JOIN `player_details` ON register.reg_id=player_details.reg_id"; 
+              $query2 = "select * from `register` INNER JOIN `player_details` ON register.reg_id=player_details.reg_id and player_details.status=1"; 
               $data1 = mysqli_query($con,$query2);
               while($row = mysqli_fetch_assoc($data1)){
                 $gen = $row['gen_id'];
@@ -162,6 +193,7 @@
                 $g = $row1['gen_name'];
                 ?>
                 <tr>
+                  <td><img src="<?php echo $row['p_image'];?>"width="50px" height="50px"></td>
                   <td><?php echo $row['reg_name'];?></td>
                   <td><?php echo $row['reg_email'];?></td>
                   <td><?php echo $row['reg_phone'];?></td>

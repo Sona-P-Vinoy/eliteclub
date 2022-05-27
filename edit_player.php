@@ -25,7 +25,7 @@ if(isset($_POST["update"]))
   $sql = "UPDATE `player_details` SET `p_address`='$addr',`p_height`='$heg',`p_weight`='$weg' WHERE `p_id`='$id'";
   if(mysqli_query($con,$sql)){
     echo 'edited successfully';
-    header('location:view_p.php');
+    header('location:view_p_det.php');
   }
   else
   {

@@ -164,6 +164,18 @@ if(isset($_POST['reg']))
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -190,6 +202,11 @@ if(isset($_POST['reg']))
         <div class="box" onclick="location.href='view_organizer.php';" style="cursor: pointer;">
           <div class="right-side">
             <div class="box-topic">View Organizers</div>
+          </div>
+        </div>
+        <div class="box" onclick="location.href='team_organizer_map.php';" style="cursor: pointer;">
+          <div class="right-side">
+            <div class="box-topic">Assign Organizer</div>
           </div>
         </div>
       </div>
@@ -284,13 +301,13 @@ if(isset($_POST['reg']))
     var regex = /^([\.\_a-zA-Z]+)([a-zA-Z ]+){1,30}$/;
     if(regex.test(name.value))
     {
-      span[14].innerText = "";
+      span[16].innerText = "";
       document.getElementById('sub').disabled =false;
     }
     else
     {
-      span[14].innerText = "enter a valid name";
-      span[14].style.color = 'red';
+      span[16].innerText = "enter a valid name";
+      span[16].style.color = 'red';
 
       document.getElementById('sub').disabled =true;
     }
@@ -301,13 +318,13 @@ if(isset($_POST['reg']))
     const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]){0,10}\.[a-zA-Z0-9]{0,10}$/;
     if(regex.test(email.value) || regexo.test(email.value))
     {
-      span[15].innerText = "";
+      span[17].innerText = "";
       document.getElementById('sub').disabled =false;
     }
     else
     {
-      span[15].innerText = "your email is invalid";
-      span[15].style.color = 'red';
+      span[17].innerText = "your email is invalid";
+      span[17].style.color = 'red';
       document.getElementById('sub').disabled =true;
     }
   }
@@ -315,13 +332,13 @@ if(isset($_POST['reg']))
    const regexn = /^[6789]\d{9}$/;
    if(regexn.test(phn.value))
    {
-    span[17].innerText = "";
+    span[19].innerText = "";
     document.getElementById('sub').disabled =false;
   }
   else
   {
-    span[17].innerText = "your number is invalid";
-    span[17].style.color = 'red';
+    span[19].innerText = "your number is invalid";
+    span[19].style.color = 'red';
     document.getElementById('sub').disabled =true;
   }
 }
@@ -330,13 +347,13 @@ pass2.onkeyup = function(){
  if (document.getElementById('p_pwd').value==document.getElementById('p_cpwd').value)
 
  {
-  span[18].innerText = "";
+  span[20].innerText = "";
   document.getElementById('sub').disabled =false;
 }
 else
 {
-  span[18].innerText = "password doesn't match";
-  span[18].style.color = 'red';
+  span[20].innerText = "password doesn't match";
+  span[20].style.color = 'red';
   document.getElementById('sub').disabled =true;
 }
 }

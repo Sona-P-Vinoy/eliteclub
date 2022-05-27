@@ -1,11 +1,4 @@
-<?php
-include('config.php');
-if(isset($_SESSION["eliteSession"]) != session_id()){
-    header("Location:index.php");
-    die();
-}
-else{ 
-?>
+
   <!DOCTYPE html>
   <html>
   <head>
@@ -56,7 +49,7 @@ else{
           <div class="test-1">Welcome to </div>
           <div class="test-2">Elite Football Club</div>
           <div class="test-3"style="color:crimson;font-weight: bold;">Where Legends Are Made <span class="type"></span></div>
-          <a href="login.php">Register for a New Team</a> <a href="player_details.php">Register As Player</a>
+          <a href="login.php">Register for a New Team</a> <a href="login.php">Register As Player</a>
           
         </div>
       </div>
@@ -145,8 +138,3 @@ else{
     <script src="script.js"></script>
   </body>
   </html>
-
-
-  <?php 
-}
-?>

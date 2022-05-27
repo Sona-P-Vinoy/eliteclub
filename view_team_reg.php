@@ -1,11 +1,19 @@
 
 
+<?php
+include('config.php');
+if(isset($_SESSION["eliteSession"]) != session_id()){
+    header("Location:index.php");
+    die();
+}
+else{ 
+?>
 
 <!DOCTYPE html>
   <html>
   <head>
     <meta charset="utf-8">
-    <title>Login Form</title>
+    <title>Elite club</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -84,11 +92,11 @@ form .row .col-75 span{
 
     <table id ="customers">
      <?php
-     include('config.php');
      session_start();
-     $email = $_SESSION['email'];
+     $pname = $_SESSION['p_name'];
+
      //echo $pname;
-     $query = "SELECT `teamr_id`, `teamr_name`, `team_sec_name`, `team_sec_email`, `team_img`, `team_ground_addr`, `team_sec_phn`, `team_gen`, `team_desc`, `team_status`,`comment` FROM `team_reg` WHERE `teamr_name` = '$email'";
+     $query = "SELECT `teamr_id`, `teamr_name`, `team_sec_name`, `team_sec_email`, `team_img`, `team_ground_addr`, `team_sec_phn`, `team_gen`, `team_desc`, `team_status` FROM `team_reg` WHERE `teamr_name` = '$pname'";
      $data = mysqli_query($con,$query);
 
      if($res=mysqli_fetch_assoc($data))
@@ -131,7 +139,6 @@ form .row .col-75 span{
         <tr><th>Gender</th><td><?php echo $gender;?></td></tr>
         <tr><th>Team Description</th><td><?php echo $team_desc;?></td></tr>
         <tr><th>Status</th><td><?php echo $st;?></td></tr>
-        <tr><th>Comment</th><td><?php echo $comment;?></td></tr>
   </table>
   <div class="row">
     <a href="edit_team_reg.php?am=<?php echo $team_id;?>">
@@ -144,3 +151,4 @@ form .row .col-75 span{
 </div>
 </body>
 </html>
+<?php } ?>

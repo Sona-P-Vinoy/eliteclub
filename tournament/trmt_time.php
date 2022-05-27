@@ -44,6 +44,7 @@ if(isset($_POST["submit"]))
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- Boxicons CDN Link -->
@@ -148,6 +149,18 @@ if(isset($_POST["submit"]))
           <span class="links_name"onclick="location.href='../team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -164,7 +177,7 @@ if(isset($_POST["submit"]))
       </div>
 
       <div class="profile-details">
-        <img src="image/david.jpg" alt="">
+        <img src="../image/david.jpg" alt="">
         <span class="admin_name">Admin</span>
       </div>
     </nav>
@@ -220,7 +233,7 @@ if(isset($_POST["submit"]))
                   <tr>
                   <td><?php echo $t1name;?></td>
                   <td><?php echo $t2name;?></td>
-                  <td><input type="text" name="date" class="form-control datepicker" autocomplete="off"></td>
+                  <td><input type="date" name="date" autocomplete="off"></td>
                   <td><input type="time" name="timea" id="timefrom" autocomplete="off"></td>
                   <td><select required name="venue" id="co">
                   <optgroup>
@@ -254,6 +267,8 @@ if(isset($_POST["submit"]))
                   <td><?php echo $tvvenue;?></td>
                   <td><a href="edit_vs_trmt.php?tm=<?php echo $tvid;?>">Edit
                   </a></td>
+
+                </tr>
                   <?php
 
                     }
@@ -264,6 +279,116 @@ if(isset($_POST["submit"]))
 
               ?>
             </table>
+
+            <div class="container" style="padding-top: 40px;">
+              <center><h3>CHECK PLAYER AVAILABILITY</h3></center>
+
+          <div class="card-body">
+          <div class="row">
+              <div class="col-md-7">
+
+                  <form action="search_team.php" method="POST">
+                      <div class="input-group mb-3">
+                          <input type="text" name="search" required value="<?php echo $tvdate; ?>" class="form-control" placeholder="Search data" readonly>
+                              <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                  </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Player Name</th>
+                                    <th>Email</th>
+                                    
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                   
+
+                                    if(isset($_POST['search']))
+                                    {
+                                        $filtervalues = $_POST['search'];
+                                        //echo $filtervalues;
+                                            $query1 = "SELECT * FROM `leaves` WHERE CONCAT(fromdate,todate) LIKE '%$filtervalues%' and `status`='Accepted'";
+                                            $query_run = mysqli_query($con, $query1);
+                                            while($res = mysqli_fetch_assoc($query_run)){
+                                              $pid = $res['pid'];
+                                              echo $pid;
+                                            
+
+                                            $query2 = "SELECT * FROM `player_pos` WHERE NOT `player_id`='$pid'";
+                                            $query_run1 = mysqli_query($con, $query2);
+                                            while($res1 = mysqli_fetch_assoc($query_run1)){
+                                              $player_id = $res1['player_id'];
+                                              $team_id = $res1['team_id'];
+                                              echo $team_id;
+                                              //echo $player_id;
+                                            
+
+                                          $query3 = "SELECT * FROM `register` WHERE `reg_id`='$player_id'";
+                                            $query_run2 = mysqli_query($con, $query3);
+                                            while($res2 = mysqli_fetch_assoc($query_run2)){
+                                              $reg_id=$res2['reg_id'];
+                                              $reg_name = $res2['reg_name'];
+                                              //echo $reg_name;
+
+                                            $query4 = "SELECT * FROM `player_details` WHERE `reg_id`='$reg_id'";
+                                            $query_run3 = mysqli_query($con, $query4);
+                                            while($res3 = mysqli_fetch_assoc($query_run3)){
+                                              $p_image=$res3['p_image'];
+
+
+
+                                        if(mysqli_num_rows($query_run2) > 0)
+                                        {
+
+                                            foreach($query_run2 as $items)
+                                            {
+                                                ?>
+                                                <tr>
+                                                    <td><img src='../<?php echo $p_image;?>'width="50px" height="50px"></td>
+                                                    
+                                                    <td><?= $items['reg_name']; ?></td>
+                                                    <td><?= $items['reg_email']; ?></td>
+                                                    
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+
+                                        else
+                                        {
+                                            ?>
+                                                <tr>
+                                                    <td colspan="4">No Record Found</td>
+                                                </tr>
+                                            <?php
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+
+                                      
+                                    
+
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+
            
           </div>
         </div>
@@ -285,6 +410,9 @@ if(isset($_POST["submit"]))
 
 </body>
 <script type="text/javascript">
+  var today = new Date();
+    today = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
+    document.getElementsByName("date")[0].setAttribute('min', today);
    
     $('.datepicker').datepicker({ 
         startDate: new Date()

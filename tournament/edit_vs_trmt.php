@@ -17,7 +17,7 @@ if(isset($_POST["update"]))
 
 
     echo '<script type="text/javascript"> alert("Edited Successfully!")</script>';
-
+    header("Location:view_trmt.php");
     
   }
   else
@@ -213,7 +213,7 @@ if(isset($_POST["update"]))
                   <tr>
                   <td><?php echo $t1name;?></td>
                   <td><?php echo $t2name;?></td>
-                  <td><input type="text" name="date" class="form-control datepicker" value="<?php echo $tvdate;?>"></td>
+                  <td><input type="date" name="date" value="<?php echo $tvdate;?>"></td>
                   <td><input type="time" name="timea" id="timefrom" value="<?php echo $tvstarttime;?>">
                   </td>
                   <td><input type="text" name="venue" value="<?php echo $tvvenue;?>"></td>
@@ -240,6 +240,9 @@ if(isset($_POST["update"]))
 
 </body>
 <script type="text/javascript">
+    var today = new Date();
+    today = new Date(today.setDate(today.getDate() + 2)).toISOString().split('T')[0];
+    document.getElementsByName("date")[0].setAttribute('min', today);
    
     $('.datepicker').datepicker({ 
         startDate: new Date()

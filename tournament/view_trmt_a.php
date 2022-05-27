@@ -162,6 +162,12 @@
           <span class="links_name"onclick="location.href='../view_team_a.php';" style="cursor: pointer;">View Team</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='../leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -178,7 +184,7 @@
       </div>
 
       <div class="profile-details">
-        <img src="image/david.jpg" alt="">
+        <img src="../image/david.jpg" alt="">
         <span class="admin_name">Admin</span>
       </div>
     </nav>

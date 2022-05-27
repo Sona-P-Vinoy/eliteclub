@@ -1,8 +1,7 @@
    <?php
    include('config.php');
    session_start();
-
-
+   $email=$_SESSION['email'];
    if(isset($_POST["submit"]))
    {  
     $pname = $_POST['p_name']; 
@@ -28,13 +27,8 @@
     }
  
 
-   $sql = "INSERT INTO `register`(`reg_name`, `reg_email`, `reg_phone`,`reg_pwd` ,`reg_status`)
-   VALUES ('$pname','$pemail','$p_phn',0,0)";
-
-   if (mysqli_query($con,$sql)) 
-   {
-    $query1="SELECT * FROM `register` WHERE `reg_email`='$pemail' "; 
-    $data1 = mysqli_query($con,$query1);
+   $sql = "SELECT * FROM `register` WHERE `reg_email`='$email'";
+   $data1 = mysqli_query($con,$sql);
 
     if($res=mysqli_fetch_assoc($data1))
     {
@@ -64,7 +58,7 @@
         if(mysqli_query($con,$query4)){
 
           echo "Registered successfully";
-          $_SESSION['p_email']=$pemail;
+          $_SESSION['email']=$email;
           header("location:view_p_det.php");
         }
         else
@@ -74,7 +68,6 @@
       }
     }
   }
-}
 }
 }
 
@@ -88,7 +81,7 @@
   <html>
   <head>
     <meta charset="utf-8">
-    <title>Login Form</title>
+    <title>Elite Club</title>
 
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -155,7 +148,7 @@ form .row .col-75 span{
     <div class="max-width">
       <div class="logo"><a href="#">Elite<span>'s.</span></a></div>
       <ul class="menu">
-        <li><a href="index.php" class="menu-btn">Home</a></li>
+        <li><a href="index.php" class="menu-btn">Logout</a></li>
       </ul>
       <div class="menu-btn">
         <i class="fas fa-bars"></i>
@@ -165,28 +158,8 @@ form .row .col-75 span{
 
   <div class="container">
     <center><h2>Registration form</h2></center>
-
+    <center><h2><?php echo $email; ?></h2></center>
     <form action="#" method="POST" autocomplete="off" onsubmit="return validate();" enctype="multipart/form-data">
-      <div class="row">
-        <span style="padding-bottom: 20px;"></span>
-        <div class="col-25">
-          <label for="pname">Name</label>
-        </div>
-        <div class="col-75">
-          <span></span> 
-          <input type="text" id="p_name" name="p_name" placeholder="Player name..">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="Email">Email</label>
-        </div>
-        <div class="col-75">
-          <span></span> 
-          <input type="text" id="p_email" name="p_email" class="checking_email" placeholder="Email">
-          <span class="error_email" style="color:red;left:17em;"></span>
-        </div>
-      </div>
       <div class="row">
         <div class="col-25">
           <label for="Image">Image</label>
@@ -204,7 +177,6 @@ form .row .col-75 span{
         <div class="col-75">
           <span></span> 
           <input type="date" id="p_dob"  name="dob" class="datepicker">
-          <input type="submit" id="btnSubmit" name="B4" value="Check" onclick="return getAge();">
         </div>
       </div>
 
@@ -259,7 +231,7 @@ form .row .col-75 span{
         </div>
         <div class="col-75">
           <span></span> 
-          <input type="text" id="p_height" name="p_height" placeholder="">
+          <input type="text" id="p_height" name="p_height" placeholder="Height">
         </div>
       </div>
       <div class="row">
@@ -294,10 +266,7 @@ form .row .col-75 span{
       return false;
     }
   }
-
-  let name = document.getElementById('p_name');
   let span = document.getElementsByTagName('span');
-  let email = document.getElementById('p_email');
   let img = document.getElementById('image');
   let dob = document.getElementById('p_dob');
   let add = document.getElementById('p_address');
@@ -305,36 +274,6 @@ form .row .col-75 span{
   let gen = document.getElementById('p_gen');
   let height = document.getElementById('p_height');
   let weight = document.getElementById('p_weight');
-    name.onkeyup = function()
-  {
-    var regex = /^([\.\_a-zA-Z]+)([a-zA-Z ]+){1,30}$/;
-    if(regex.test(name.value))
-    {
-      span[2].innerText = "";
-      document.getElementById('sub').disabled =false;
-    }
-       else
-    {
-      span[2].innerText = "enter a valid name";
-      span[2].style.color = 'red';
-      document.getElementById('sub').disabled =true;
-    }
-  }
-    email.onkeyup = function(){
-    const regex = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]){0,10}$/;
-    const regexo = /^([\.\_a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z0-9]){0,10}\.[a-zA-Z0-9]{0,10}$/;
-    if(regex.test(email.value) || regexo.test(email.value))
-    {
-      span[3].innerText = "";
-      document.getElementById('sub').disabled =false;
-    }
-    else
-    {
-      span[3].innerText = "your email is invalid";
-      span[3].style.color = 'red';
-      document.getElementById('sub').disabled =true;
-    }
-  }
 
   function getAge(){
     var dateString = document.getElementById('p_dob').value;
@@ -371,13 +310,13 @@ add.onkeyup = function()
     var regex = /^[a-zA-Z0-9\s]{3,}$/;
     if(regex.test(add.value))
     {
-      span[8].innerText = "";
+      span[4].innerText = "";
       document.getElementById('sub').disabled =false;
     }
     else
     {
-      span[8].innerText = "enter a valid address";
-      span[8].style.color = 'red';
+      span[4].innerText = "enter a valid address";
+      span[4].style.color = 'red';
 
       document.getElementById('sub').disabled =true;
     }
@@ -387,13 +326,13 @@ phn.onkeyup = function()
   var regex = /^[6789]\d{9}$/;
   if(regex.test(phn.value))
    {
-    span[9].innerText = "";
+    span[5].innerText = "";
     document.getElementById('sub').disabled =false;
   }
   else
   {
-    span[9].innerText = "your number is invalid";
-    span[9].style.color = 'red';
+    span[5].innerText = "your number is invalid";
+    span[5].style.color = 'red';
     document.getElementById('sub').disabled =true;
   }
 }
@@ -404,13 +343,13 @@ height.onkeyup = function()
 
   if(regex.test(height.value))
    {
-    span[11].innerText = "";
+    span[7].innerText = "";
     document.getElementById('sub').disabled =false;
   }
   else
   {
-    span[11].innerText = "your height is invalid";
-    span[11].style.color = 'red';
+    span[7].innerText = "your height is invalid";
+    span[7].style.color = 'red';
     document.getElementById('sub').disabled =true;
   }
 }  
@@ -420,13 +359,13 @@ weight.onkeyup = function()
 
   if(regex.test(weight.value))
    {
-    span[12].innerText = "";
+    span[8].innerText = "";
     document.getElementById('sub').disabled =false;
   }
   else
   {
-    span[12].innerText = "your weight is invalid";
-    span[12].style.color = 'red';
+    span[8].innerText = "your weight is invalid";
+    span[8].style.color = 'red';
     document.getElementById('sub').disabled =true;
   }
 }  

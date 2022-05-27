@@ -1,7 +1,13 @@
-  <?php
+<?php
 include('config.php');
 session_start();
 $email=$_SESSION['email'];
+if(isset($_SESSION["eliteSession"]) != session_id()){
+    header("Location:index.php");
+    die();
+}
+else{
+
 //echo $email;
 
   $query = "select * from `register` where `reg_email`='$email'";
@@ -208,3 +214,10 @@ i, cite, em, var, address, dfn {
 
 </body>
 </html>
+<?php
+}
+?>
+
+<script type = "text/javascript" >  
+    window.history.forward();   
+</script>

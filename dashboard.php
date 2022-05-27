@@ -10,7 +10,7 @@ else{
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <title> Responsive Admin Dashboard </title>
+  <title>Elite Admin Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -168,6 +168,18 @@ i, cite, em, var, address, dfn {
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='training_programme.php';" style="cursor: pointer;">Training Programme</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -182,6 +194,10 @@ i, cite, em, var, address, dfn {
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
       </div>
+      <div class="sidebar-button" style="font-size: 20px;">
+        <span class="dashboard"onclick="location.href='view_feedback.php';" style="cursor: pointer;">Feedback</span>
+      </div>
+
 
       <div class="profile-details">
         <img src="image/david.jpg" alt="">
@@ -277,3 +293,7 @@ i, cite, em, var, address, dfn {
 <?php
 }
 ?>
+
+<script type = "text/javascript" >  
+    window.history.forward();   
+</script>

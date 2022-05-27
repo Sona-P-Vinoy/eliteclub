@@ -51,7 +51,7 @@
 
 </head>
 <body>
-  <div class="sidebar">
+        <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Elite Football</span>
@@ -60,47 +60,72 @@
       <li>
         <a href="#" class="active">
           <i class='bx bx-grid-alt' ></i>
-          <span class="links_name"onclick="location.href='dashboard1.php';" style="cursor: pointer;">Dashboard</span>
+          <span class="links_name"onclick="location.href='dashboard.php';" style="cursor: pointer;">Dashboard</span>
         </a>
       </li>
       <li>
         <a href="#">
           <i class='bx bx-group' ></i>
-          <span class="links_name"onclick="location.href='team_o.php';" style="cursor: pointer;">Teams</span>
+          <span class="links_name"onclick="location.href='team.php';" style="cursor: pointer;">Teams</span>
         </a>
       </li>
       <li>
         <a href="#">
           <i class='bx bx-user' ></i>
-          <span class="links_name"onclick="location.href='view_player.php';" style="cursor: pointer;">Players</span>
+          <span class="links_name"onclick="location.href='view_player_a.php';" style="cursor: pointer;">View Players</span>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-user' ></i>
-          <span class="links_name"onclick="location.href='view_coach.php';" style="cursor: pointer;">Coach</span>
+          <i class='bx bx-user'></i>
+          <span class="links_name"onclick="location.href='view_coach_a.php';" style="cursor: pointer;">All Coaches</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-user'></i>
+          <span class="links_name"onclick="location.href='add_organizer.php';" style="cursor: pointer;">Add Organizer</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-coin-stack' ></i>
+          <span class="links_name"onclick="location.href='tournament/booking_details.php';" style="cursor: pointer;">Tickets</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-coin-stack' ></i>
+             <span class="links_name"onclick="location.href='tournament/stadium.php';" style="cursor: pointer;">Stadium</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name"onclick="location.href='tournament/trmt.php';" style="cursor: pointer;">Tournament</span>
         </a>
       </li>
       <li>
         <a href="#">
           <i class='bx bx-group' ></i>
-          <span class="links_name"onclick="location.href='team_coach_map.php';" style="cursor: pointer;">Assign Coach</span>
+          <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
-       <li>
+      <li>
         <a href="#">
-          <i class='bx bx-book-alt'></i>
-          <span class="links_name"onclick="location.href='view_team.php';" style="cursor: pointer;">Assign Players</span>
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
         </a>
       </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
-          <span class="links_name"onclick="location.href='login.php';" style="cursor: pointer;">Log out</span>
+          <span class="links_name" onclick="location.href='login.php';" style="cursor: pointer;">Log out</span>
         </a>
       </li>
     </ul>
   </div>
+
   <section class="home-section">
     <nav>
       <div class="sidebar-button">

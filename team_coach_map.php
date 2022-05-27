@@ -164,18 +164,16 @@ if(isset($_POST['submit']))
                   <optgroup>
                     <?php
                     include 'config.php';
-                    $query="SELECT * FROM `team_reg` left join `team_coach_map` on team_reg.teamr_id=team_coach_map.team_id where team_coach_map.team_id is null where team_reg.teamr_id = '$teamr_id'";
-                    $data=mysqli_num_rows($con,$query);
-                    if($data>0){
+                    $query="SELECT * FROM `team_reg` where `teamr_id` = '$teamr_id'";
+                    $data=mysqli_query($con,$query);
+                    
                     while($res=mysqli_fetch_assoc($data))
                     {
+                      
+
                       ?>
                       <option><?php echo $res['teamr_name'];?></option>
                     <?php }
-                  }
-                    else{
-                      echo '<script type="text/javascript"> document.getElementById("container").style.display = "none";</script>';
-                    }
   
                     ?>
                   </optgroup>
@@ -189,7 +187,7 @@ if(isset($_POST['submit']))
               <div class="col-75">
                 <span></span> 
                 <select required name="co" id="co">
-                  <optgroup>
+                  <optgroup1>
                     <?php
                     include 'config.php';
                     $query="SELECT * FROM `login` where `type_id`='3'";
@@ -224,15 +222,32 @@ if(isset($_POST['submit']))
             </tr>
             <?php
             include('config.php');      
-            $query="SELECT * from team_coach_map left join team_reg ON team_reg.teamr_id = '$teamr_id' left join register on register.reg_id = team_coach_map.coach_id and team_coach_map.team_id='$teamr_id';";
+            $query="SELECT * from team_coach_map where team_id = '$teamr_id'";
             $data = mysqli_query($con,$query);
             if($res=mysqli_fetch_assoc($data))
             {
+              $t_id = $res['team_id'];
+              $c_id = $res['coach_id'];
+
+            $query1="SELECT * from team_reg where teamr_id = '$t_id'";
+            $data1 = mysqli_query($con,$query1);
+            if($res1=mysqli_fetch_assoc($data1))
+            {
+              $t_name = $res1['teamr_name'];
+
+            $query2="SELECT * from register where reg_id = '$c_id'";
+            $data2 = mysqli_query($con,$query2);
+            if($res2=mysqli_fetch_assoc($data2))
+            {
+              $c_name = $res2['reg_name'];
               echo"<tr>
-              <td>".$res['teamr_name']."</td>
-              <td>".$res['reg_name']."</td>
+              <td>".$t_name."</td>
+              <td>".$c_name."</td>
               </tr>";
             }
+          }
+        }
+
             ?>
           </table>
         </section>

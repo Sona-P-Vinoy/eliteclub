@@ -154,6 +154,12 @@ if(isset($_POST['submit']))
           <span class="links_name"onclick="location.href='team_coach_map_a.php';" style="cursor: pointer;">View Coach</span>
         </a>
       </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-group' ></i>
+          <span class="links_name"onclick="location.href='leave_application.php';" style="cursor: pointer;">Leave Application</span>
+        </a>
+      </li>
       <li class="log_out">
         <a href="#">
           <i class='bx bx-log-out'></i>
@@ -203,7 +209,7 @@ if(isset($_POST['submit']))
                   <optgroup>
                     <?php
                     include 'config.php';
-                    $query="SELECT * FROM `team_reg` left join `team_organizer_map` on team_reg.teamr_id=team_organizer_map.team_id where team_organizer_map.team_id is null";
+                    $query="SELECT * FROM `team_reg` left join `team_organizer_map` on team_reg.teamr_id=team_organizer_map.team_id where team_organizer_map.team_id is null and team_reg.team_status=1";
                     $data=mysqli_query($con,$query);
                     if($data){
                     while($res=mysqli_fetch_assoc($data))
